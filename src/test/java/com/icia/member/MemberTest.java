@@ -15,7 +15,7 @@ public class MemberTest {
      회원가입 테스트
      save.html 에서 회원정보 입력 후 가입 클릭
      db 확인
-
+        안녕
     */
     @Autowired
     private MemberService ms;
