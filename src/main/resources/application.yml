@@ -1,6 +1,6 @@
 # server.port=8091 로 써도 되지만 yam 형식으로 많이 씀
 server:
-  port: 8091
+  port: 8092
 
 #DB 접속 정보
 spring:

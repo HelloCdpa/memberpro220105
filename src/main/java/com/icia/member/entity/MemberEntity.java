@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "member_table")
 public class MemberEntity {
     @Id //pk지정
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment (strategy=오라클/마이에스큐엘 다름)
     @Column(name = "member_id") //컬럼 이름 지정 구분용 숫자 아이디(별도 컬럼 이름 지정할 때)
     private Long id;
     //memberEmail:크기50,unique
