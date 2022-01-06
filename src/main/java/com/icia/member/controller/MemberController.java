@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/member/*")
@@ -28,14 +29,18 @@ public class MemberController {
 
     @PostMapping("save")
     public String save(@Validated @ModelAttribute("member") MemberSaveDTO memberSaveDTO, BindingResult bindingResult) {
-        System.out.println("MemberController.save");
-        System.out.println("memberSaveDTO = " + memberSaveDTO);
+//        System.out.println("MemberController.save");
+//        System.out.println("memberSaveDTO = " + memberSaveDTO);
         if(bindingResult.hasErrors()){
             return "member/save";
         }
-
-        ms.save(memberSaveDTO);
-
+        try {
+            ms.save(memberSaveDTO);
+        }catch (IllegalStateException e){
+            //e.getMessage()에는 서비스에서 지정한 예외 메시지가 담겨있음.
+            bindingResult.reject("emailCheck",e.getMessage());
+            return "member/save";
+        }
         return "redirect:/member/login";
     }
 
@@ -74,7 +79,13 @@ public class MemberController {
         model.addAttribute("member",member);
         return "member/detail";
     }
-
+    //목록출력(/member)
+    @GetMapping
+    public String findAll(Model model){
+        List<MemberDetailDTO> memberList = ms.findAll();
+        model.addAttribute("memberList",memberList);
+        return "member/findAll";
+    }
 
 
 

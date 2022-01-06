@@ -1,9 +1,16 @@
 package com.icia.member.dto;
 
 import com.icia.member.entity.MemberEntity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemberDetailDTO {
    private Long memberId;
    private String memberEmail;
@@ -18,6 +25,7 @@ public class MemberDetailDTO {
       memberDetailDTO.setMemberName((member.getMemberName()));
       return memberDetailDTO;
    }
+
 
 
 }
