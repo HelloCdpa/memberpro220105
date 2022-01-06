@@ -61,19 +61,7 @@ public class MemberTest {
 
         assertThat(memberSaveDTO.getMemberEmail()).isEqualTo(findMember.getMemberEmail());
 
-
-
-
-
-
-
-
-
-
-
     }
-
-
 
 
 }

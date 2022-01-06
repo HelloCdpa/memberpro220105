@@ -16,6 +16,9 @@
     <form action="/member/login" method="post" class="d-grid gap-2 col-6 mx-auto" th:object="${login}">
         <h2>로그인</h2>
         <label for="memberEmail" class="text-start"> 이메일 </label>
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p class="field-error" th:each="err: ${#fields.globalErrors()}" th:text="${err}">글로벌오류</p>
+        </div>
         <input class="form-control" type="text" placeholder="이메일" id="memberEmail" th:field="*{memberEmail}">
         <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}" th:errorclass="field-error"> </p>
         <label for="memberPassword" class="text-start"> 비밀번호</label>

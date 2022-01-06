@@ -1,6 +1,7 @@
 package com.icia.member.service;
 
 import com.icia.member.dto.MemberDetailDTO;
+import com.icia.member.dto.MemberLoginDTO;
 import com.icia.member.dto.MemberSaveDTO;
 import com.icia.member.entity.MemberEntity;
 import com.icia.member.repository.MemberRepository;
@@ -35,6 +36,22 @@ public class MemberServiceImpl implements MemberService {
         MemberDetailDTO memberDetailDTO = MemberDetailDTO.toMemberDetailDTO(member);
         System.out.println("memberDetailDTO.toString() = " + memberDetailDTO.toString());
         return memberDetailDTO;
+    }
+
+    @Override
+    public boolean login(MemberLoginDTO memberLoginDTO) {
+        //1. 사용자가 입력한 이메일을 조건으로 DB에서 조회 (select * from member_table where member_email=?)
+        MemberEntity memberEntity = mr.findByMemberEmail(memberLoginDTO.getMemberEmail());
+        //2.비밀번호 일치여부 확인
+        if(memberEntity != null) {
+            if (memberLoginDTO.getMemberPassword().equals(memberEntity.getMemberPassword())) {
+                return true;
+            } else {
+                return false;
+            }
+        }else {
+            return false;
+        }
     }
 
 }
